@@ -9,5 +9,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.Index.as_view()),
     path('token/', obtain_auth_token),
-    path('api/', include(api_urls))
+    path('api/', include(api_urls, namespace='web_app')),
 ]

@@ -1,6 +1,6 @@
 
 from django.test import TestCase
-from django.contrib.auth.models import User
+from web_app.models import User
 from web_app.models import ElectroCar
 
 class HomeApiTest(TestCase):
@@ -10,8 +10,9 @@ class HomeApiTest(TestCase):
         user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
 
         response = self.client.post('/token/', data={
+            'email': 'lennon@thebeatles.com',
             'username': 'john',
-            'password': 'johnpassword'
+            'password': 'johnpassword',
         })
         print(response.json())
         self.assertEqual(response.status_code, 200)
@@ -37,3 +38,14 @@ class HomeApiTest(TestCase):
         tesla.save()
 
         self.assertEqual(tesla.is_registered, 1)
+
+    def test_api_registation_new_user(self):
+        '''тест: регистрации по api нового пользователя'''
+
+        response = self.client.post('api/users/', data={
+            "user": {
+        "username": "user1",
+        "email": "user1@user.user",
+        "password": "qweasdzxc"
+        }})
+        print(response.content)
