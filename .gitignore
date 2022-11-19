@@ -3,3 +3,4 @@ prob.py
 __pycache__/
 *.pyc
 db.sqlite3
+web_app/migrations
