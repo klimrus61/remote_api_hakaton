@@ -71,10 +71,20 @@ def person_list(request):
             return JsonResponse(serializer.data, status=201)
         return JsonResponse(serializer.errors, status=400)
     
+def add_new_person(request):
+    '''Добавление нового пользователя'''
+    person = Person.objects.create()
+    if request.method == "POST":
+        data = JSONParser().parse(request)
+        serializer = PersonSerializer(person, data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data)
+        return JsonResponse(serializer.errors, status=400)
 
 def person_detail(request, pk):
     """
-    Взаимодействие с конкретным пользователя
+    Взаимодействие с конкретным пользователем
     """
     try:
         person = Person.objects.get(pk=pk)

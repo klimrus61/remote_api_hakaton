@@ -2,16 +2,18 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class ElectroCar(models.Model):
-    """электрокар"""
+    """Таблица электрокара"""
     car_model = models.TextField()
     car_number = models.TextField()
     is_cheking = models.IntegerField(default=1)
     is_registered = models.IntegerField(default=0)
+    sts = models.ImageField(upload_to='sts', blank=True, null=True)
 
     def __str__(self):
         return self.car_number
 
 class Person(models.Model):
+    "Таблица пользователя"
     SEX = (
         ('M', 'Мужской'),
         ('Ж', 'Женский')

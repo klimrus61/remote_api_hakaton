@@ -23,6 +23,7 @@ class CarSerializer(serializers.Serializer):
         return instance
 
 class PersonSerializer(serializers.ModelSerializer):
+    '''Инстас пользователя'''
     phone = serializers.CharField(required=False, allow_blank=True, max_length=100)
     class Meta:
         model = Person
