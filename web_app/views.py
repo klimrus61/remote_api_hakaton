@@ -17,7 +17,7 @@ class LoginAPIView(APIView):
     renderer_classes = (UserJSONRenderer,)
     serializer_class = LoginSerializer
 
-    def post(self, request):
+    def post(self, request, format=None):
         user = request.data.get('user', {})
 
         # Обратите внимание, что мы не вызываем метод save() сериализатора, как
