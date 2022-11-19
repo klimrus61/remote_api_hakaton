@@ -21,7 +21,7 @@ class Person(models.Model):
     avatar = models.ImageField(upload_to='avatars')
     birth = models.DateField()
     gender = models.CharField(max_length=10, choices=SEX)
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
     phone = models.CharField(max_length=30, blank=True, null=True)
 
     def __str__(self):

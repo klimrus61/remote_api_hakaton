@@ -11,13 +11,14 @@ class Index(APIView):
     permission_classes = (IsAuthenticated,) 
 
     def get(self, request):
-        content = {'message': 'Hello, World!'}
+        content = {'message': 'Home, page'}
         return Response(content)
 
 def cars_list(request):
     """
-    List all code snippets, or create a new snippet.
+    Передает список электромашин
     """
+    
     if request.method == 'GET':
         cars = ElectroCar.objects.all()
         serializer = CarSerializer(cars, many=True)
@@ -36,24 +37,24 @@ def car_detail(request, pk):
     Retrieve, update or delete a code snippet.
     """
     try:
-        snippet = ElectroCar.objects.get(pk=pk)
+        car = ElectroCar.objects.get(pk=pk)
     except ElectroCar.DoesNotExist:
         return HttpResponse(status=404)
 
     if request.method == 'GET':
-        serializer = CarSerializer(snippet)
+        serializer = CarSerializer(car)
         return JsonResponse(serializer.data)
 
     elif request.method == 'PUT':
         data = JSONParser().parse(request)
-        serializer = CarSerializer(snippet, data=data)
+        serializer = CarSerializer(car, data=data)
         if serializer.is_valid():
             serializer.save()
             return JsonResponse(serializer.data)
         return JsonResponse(serializer.errors, status=400)
 
     elif request.method == 'DELETE':
-        snippet.delete()
+        car.delete()
         return HttpResponse(status=204)
     
 def person_list(request):
