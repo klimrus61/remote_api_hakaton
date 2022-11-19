@@ -1,4 +1,4 @@
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-4ap#fl@$qdmkr_hr*=*$0f#x=55$z4oiv*92_nn%=w0yvizujd
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['klimrus61.pythonanywhere.com', '127.0.0.1']
+ALLOWED_HOSTS = ['klimrus61.pythonanywhere.com', '127.0.0.1', '37.140.241.46']
 
 
 # Application definition
@@ -66,12 +66,15 @@ WSGI_APPLICATION = 'parktronic.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+'default': {
+'ENGINE': 'django.db.backends.postgresql_psycopg2',
+'NAME': 'cloudproject',
+'USER': 'clouduser',
+'PASSWORD': 'password',
+'HOST': 'localhost',
+'PORT': '',
 }
-
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -120,8 +123,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # see https://help.pythonanywhere.com/pages/DjangoStaticFiles for more info
 MEDIA_ROOT = '/home/klimrus61/parktronic/media'
 MEDIA_URL = '/media/'
-STATIC_ROOT = '/home/klimrus61/parktronic/static'
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 
 REST_FRAMEWORK = {
