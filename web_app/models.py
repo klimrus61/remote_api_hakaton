@@ -22,6 +22,7 @@ class Person(models.Model):
     birth = models.DateField()
     gender = models.CharField(max_length=10, choices=SEX)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    phone = models.CharField(max_length=30, blank=True, null=True)
 
     def __str__(self):
         return self.full_name

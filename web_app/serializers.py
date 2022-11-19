@@ -23,8 +23,8 @@ class CarSerializer(serializers.Serializer):
         return instance
 
 class PersonSerializer(serializers.ModelSerializer):
+    phone = serializers.CharField(required=False, allow_blank=True, max_length=100)
     class Meta:
         model = Person
         fields = ['id', 'full_name', 'list_cars', 
-        'avatar', 'birth', 'gender', 'user', 'SEX']
-        
+        'avatar', 'birth', 'gender', 'user', 'phone']
