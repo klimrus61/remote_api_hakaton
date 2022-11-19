@@ -68,9 +68,9 @@ WSGI_APPLICATION = 'parktronic.wsgi.application'
 DATABASES = {
 'default': {
 'ENGINE': 'django.db.backends.postgresql_psycopg2',
-'NAME': 'cloudproject',
-'USER': 'clouduser',
-'PASSWORD': 'password',
+'NAME': 'parktronic',
+'USER': 'parktronic',
+'PASSWORD': 'parktronic',
 'HOST': 'localhost',
 'PORT': '',
 }
