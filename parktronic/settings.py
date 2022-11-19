@@ -137,7 +137,4 @@ REST_FRAMEWORK = {
 
 AUTH_USER_MODEL = 'web_app.User'
 
-CORS_ALLOWED_ORIGINS = [
-    'http://37.140.241.46:8002',
-    "http://127.0.0.1:9000",
-]
+CORS_ALLOW_ALL_ORIGINS = True
