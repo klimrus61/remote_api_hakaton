@@ -8,9 +8,8 @@ import sys
 def check_invalid_type_generator(file: object):
     pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
-    # читать изображение с помощью OpenCV
     # image = cv2.imread(file)
-    # или вы можете использовать подушку
+    
     image = Image.open(file)
 
     # получаем строку
@@ -75,6 +74,3 @@ def photoshop_check(photo):
         print(f"{tag:25}:% {data}")
     return photoshop_detected
         
-
-print(check_invalid_type_generator(r'C:\Users\klim\pythonany\post_5b0baa1687c2.jpg'))
-print(photoshop_check(r'C:\Users\klim\pythonany\post_5b0baa1687c2.jpg'))
