@@ -35,6 +35,8 @@ class CarSerializer(serializers.Serializer):
     car_number = serializers.CharField()
     is_cheking = serializers.IntegerField()
     is_registered = serializers.IntegerField()
+    pts = serializers.ImageField()
+    sts = serializers.ImageField()
 
     def create(self, validated_data):
         """
@@ -47,6 +49,8 @@ class CarSerializer(serializers.Serializer):
         instance.number = validated_data.get('number', instance.number)
         instance.is_cheking = validated_data.get('is_cheking', instance.is_cheking)
         instance.is_registere = validated_data.get('is_registere', instance.is_registere)
+        instance.pts = validated_data.get('pts', instance.pts)
+        instance.sts = validated_data.get('sts', instance.sts)
         return instance
 
 class PersonSerializer(serializers.ModelSerializer):
