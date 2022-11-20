@@ -11,7 +11,7 @@ from django.http import HttpResponse, JsonResponse
 from web_app.models import ElectroCar, Person
 from web_app.serializers import CarSerializer, PersonSerializer, LoginSerializer, RegistrationSerializer
 from .renderers import UserJSONRenderer
-from web_app.tesseract_script import check_invalid_type_generator
+#from web_app.tesseract_script import check_invalid_type_generator
 
 
 class LoginAPIView(APIView):
