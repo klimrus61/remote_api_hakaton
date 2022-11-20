@@ -14,5 +14,5 @@ urlpatterns = [
     path('person/create/', views.create_person),
     path('users/', RegistrationAPIView.as_view()),
     path('users/login/', LoginAPIView.as_view()),
-    path('file/uplode', views.PtsStsUploadView.as_view()),
+    path('file/uplode/', views.PtsStsUploadView.as_view()),
 ]

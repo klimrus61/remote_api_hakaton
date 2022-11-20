@@ -11,7 +11,7 @@ from django.http import HttpResponse, JsonResponse
 from web_app.models import ElectroCar, Person
 from web_app.serializers import CarSerializer, PersonSerializer, LoginSerializer, RegistrationSerializer
 from .renderers import UserJSONRenderer
-#from tesseract_script import check_invalid_type_generator
+from web_app.tesseract_script import check_invalid_type_generator
 
 
 class LoginAPIView(APIView):
@@ -105,9 +105,8 @@ class PtsStsUploadView(APIView):
 
     def put(self, request, filename, format=None):
         file_obj = request.FILES['file']
-       # if not check_invalid_type_generator(file_obj):
-
-        return Response(status=204)
+        if not check_invalid_type_generator(file_obj):
+            return Response(status=204)
 
 @api_view(['POST'])
 def create_car(request):
@@ -146,7 +145,6 @@ def create_person(request):
 
 
 @api_view(['GET', 'POST', 'DELETE'])
-@permission_classes([IsAuthenticated,])
 def person_detail(request, pk):
     """
     Взаимодействие с конкретным пользователем
