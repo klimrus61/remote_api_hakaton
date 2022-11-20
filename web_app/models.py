@@ -112,7 +112,7 @@ class Person(models.Model):
         ('Женский', 'Женский')
     )
     full_name = models.TextField()
-    list_cars = models.ManyToOneRel(ElectroCar, on_delete=models.CASCADE)
+    list_cars = models.ForeignKey(ElectroCar, on_delete=models.CASCADE)
     avatar = models.ImageField(upload_to='avatars')
     birth = models.DateField()
     gender = models.CharField(max_length=10, choices=SEX)
