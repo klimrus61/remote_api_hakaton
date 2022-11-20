@@ -56,6 +56,7 @@ class CarSerializer(serializers.Serializer):
 class PersonSerializer(serializers.ModelSerializer):
     '''Инстас пользователя'''
     phone = serializers.CharField(required=False, allow_blank=True, max_length=100)
+    avatar = serializers.ImageField(required=False, allow_blank=True)
     class Meta:
         model = Person
         fields = ['id', 'full_name', 'list_cars', 
