@@ -35,6 +35,19 @@ class CarSerializer(serializers.ModelSerializer):
         model = ElectroCar
         fields = '__all__'
     
+    def create(self, validated_data):
+        return ElectroCar.objects.create(**validated_data)
+
+    def validate(self, data):
+        
+        pts = data.get('pts', None)
+        sts = data.get('sts', None)
+
+        return {
+            'pts': pts,
+            'sts': sts
+        }
+
 class PersonSerializer(serializers.ModelSerializer):
     '''Инстас пользователя'''
     phone = serializers.CharField(required=False, allow_blank=True, max_length=100)
@@ -42,6 +55,9 @@ class PersonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Person
         fields = '__all__'
+
+    def create(self, validated_data):
+        return ElectroCar.objects.create(**validated_data)
 
 class LoginSerializer(serializers.Serializer):
     email = serializers.CharField(max_length=255)
