@@ -84,7 +84,7 @@ def car_detail(request, pk):
         serializer = CarSerializer(car)
         return JsonResponse(serializer.data)
 
-    elif request.method == 'PUT':
+    elif request.method == 'POST':
         data = JSONParser().parse(request)
         serializer = CarSerializer(car, data=data)
         if serializer.is_valid():
@@ -134,7 +134,7 @@ def person_detail(request, pk):
         serializer = PersonSerializer(person)
         return JsonResponse(serializer.data)
 
-    elif request.method == 'PUT':
+    elif request.method == 'POST':
         data = JSONParser().parse(request)
         serializer = PersonSerializer(person, data=data)
         if serializer.is_valid():

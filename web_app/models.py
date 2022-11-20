@@ -100,6 +100,7 @@ class ElectroCar(models.Model):
     is_cheking = models.IntegerField(default=1)
     is_registered = models.IntegerField(default=0)
     sts = models.ImageField(upload_to='sts', blank=True, null=True)
+    pts = models.ImageField(upload_to='pts', blank=True, null=True)
 
     def __str__(self):
         return self.car_number
@@ -107,8 +108,8 @@ class ElectroCar(models.Model):
 class Person(models.Model):
     "Таблица пользователя"
     SEX = (
-        ('M', 'Мужской'),
-        ('Ж', 'Женский')
+        ('Mужской', 'Мужской'),
+        ('Женский', 'Женский')
     )
     full_name = models.TextField()
     list_cars = models.ForeignKey(ElectroCar, on_delete=models.CASCADE)
@@ -117,6 +118,9 @@ class Person(models.Model):
     gender = models.CharField(max_length=10, choices=SEX)
     user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
     phone = models.CharField(max_length=30, blank=True, null=True)
+    city = models.CharField(max_length=100, blank=True, null=True)
+    email = models.CharField(max_length=50)
+    nick = models.CharField(max_length=50)
 
     def __str__(self):
         return self.full_name

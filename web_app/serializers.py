@@ -55,7 +55,8 @@ class PersonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Person
         fields = ['id', 'full_name', 'list_cars', 
-        'avatar', 'birth', 'gender', 'user', 'phone']
+        'avatar', 'birth', 'gender', 'user', 'phone', 
+        'email', 'nick', 'city']
 
 class LoginSerializer(serializers.Serializer):
     email = serializers.CharField(max_length=255)
