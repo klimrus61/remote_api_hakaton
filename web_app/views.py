@@ -122,7 +122,7 @@ def add_new_person(request):
             return JsonResponse(serializer.data)
         return JsonResponse(serializer.errors, status=400)
 
-@api_view(['GET'])
+@api_view(['GET', 'POST', 'DELETE'])
 @permission_classes([AllowAny,])
 def person_detail(request, pk):
     """
