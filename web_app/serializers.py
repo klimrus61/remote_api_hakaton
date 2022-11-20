@@ -29,39 +29,19 @@ class RegistrationSerializer(serializers.ModelSerializer):
         # написали ранее, для создания нового пользователя.
         return User.objects.create_user(**validated_data)
 
-class CarSerializer(serializers.Serializer):
-    id = serializers.IntegerField(read_only=True)
-    car_model = serializers.CharField()
-    car_number = serializers.CharField()
-    is_cheking = serializers.IntegerField()
-    is_registered = serializers.IntegerField()
-    pts = serializers.ImageField()
-    sts = serializers.ImageField()
-
-    def create(self, validated_data):
-        """
-        Создает и возвращает инстанс ElectroCar с учетом валидных данных
-        """
-        return ElectroCar.objects.create(**validated_data)
-
-    def update(self, instance, validated_data):
-        instance.car_model = validated_data.get('car_model', instance.car_model)
-        instance.number = validated_data.get('number', instance.number)
-        instance.is_cheking = validated_data.get('is_cheking', instance.is_cheking)
-        instance.is_registere = validated_data.get('is_registere', instance.is_registere)
-        instance.pts = validated_data.get('pts', instance.pts)
-        instance.sts = validated_data.get('sts', instance.sts)
-        return instance
-
+class CarSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = ElectroCar
+        fields = '__all__'
+    
 class PersonSerializer(serializers.ModelSerializer):
     '''Инстас пользователя'''
     phone = serializers.CharField(required=False, allow_blank=True, max_length=100)
     
     class Meta:
         model = Person
-        fields = ['id', 'full_name', 'list_cars',
-        'birth', 'gender', 'user', 'phone', 
-        'email', 'nick', 'city']
+        fields = '__all__'
 
 class LoginSerializer(serializers.Serializer):
     email = serializers.CharField(max_length=255)

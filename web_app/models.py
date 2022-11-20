@@ -93,18 +93,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 
         return token
 
-class ElectroCar(models.Model):
-    """Таблица электрокара"""
-    car_model = models.TextField()
-    car_number = models.TextField()
-    is_cheking = models.IntegerField(default=1)
-    is_registered = models.IntegerField(default=0)
-    sts = models.ImageField(upload_to='sts', blank=True, null=True)
-    pts = models.ImageField(upload_to='pts', blank=True, null=True)
-
-    def __str__(self):
-        return self.car_number
-
 class Person(models.Model):
     "Таблица пользователя"
     SEX = (
@@ -112,7 +100,6 @@ class Person(models.Model):
         ('Женский', 'Женский')
     )
     full_name = models.TextField()
-    list_cars = models.ForeignKey(ElectroCar, on_delete=models.CASCADE)
     avatar = models.ImageField(upload_to='avatars', blank=True, null=True)
     birth = models.DateField()
     gender = models.CharField(max_length=10, choices=SEX)
@@ -124,5 +111,20 @@ class Person(models.Model):
 
     def __str__(self):
         return self.full_name
+
+class ElectroCar(models.Model):
+    """Таблица электрокара"""
+    car_model = models.TextField()
+    car_number = models.TextField()
+    owner = models.ForeignKey(Person, on_delete=models.CASCADE, blank=True, null=True)
+    is_cheking = models.IntegerField(default=1)
+    is_registered = models.IntegerField(default=0)
+    sts = models.ImageField(upload_to='sts', blank=True, null=True)
+    pts = models.ImageField(upload_to='pts', blank=True, null=True)
+
+    def __str__(self):
+        return self.car_number
+
+
 
 # фио, модель машины, номер машины, год рж, пол
