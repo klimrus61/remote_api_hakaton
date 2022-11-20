@@ -100,13 +100,13 @@ def car_detail(request, pk):
         car.delete()
         return HttpResponse(status=204)
 
-class PtsStsUploadView(APIView):
-    parser_classes = (FileUploadParser,)
+# class PtsStsUploadView(APIView):
+#     parser_classes = (FileUploadParser,)
 
-    def put(self, request, filename, format=None):
-        file_obj = request.FILES['file']
-        if not check_invalid_type_generator(file_obj):
-            return Response(status=204)
+#     def put(self, request, filename, format=None):
+#         file_obj = request.FILES['file']
+#         if not check_invalid_type_generator(file_obj):
+#             return Response(status=204)
 
 @api_view(['POST'])
 def create_car(request):
